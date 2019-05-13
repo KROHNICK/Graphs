@@ -21,11 +21,15 @@ class Graph:
             print(f"Vertex '{v2}' does not exist.")
 
     def bft(self, starting_vertex):
-        """
-        Print each vertex in breadth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        queue = [starting_vertex]
+        visited = set(starting_vertex)
+        while len(queue) > 0:
+            for i in self.vertices[queue[0]]:
+                if i not in visited:
+                    visited.add(i)
+                    queue.append(i)
+
+            print(queue.pop(0))
 
     def dft(self, starting_vertex):
         """
