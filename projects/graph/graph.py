@@ -21,26 +21,28 @@ class Graph:
             print(f"Vertex '{v2}' does not exist.")
 
     def bft(self, starting_vertex):
-        queue = [starting_vertex]
-        visited = set(starting_vertex)
-        while len(queue) > 0:
-            for i in self.vertices[queue[0]]:
-                if i not in visited:
-                    visited.add(i)
-                    queue.append(i)
-
-            print(queue.pop(0))
+        q = Queue()
+        q.enqueue(starting_vertex)
+        visited = set()
+        while q.size > 0:
+            v = q.dequeue()
+            if v not in visited:
+                print(v)
+                visited.add(v)
+                for next_vert in self.vertices[v]:
+                    q.enqueue(next_vert)
 
     def dft(self, starting_vertex):
-        stack = [starting_vertex]
-        visited = set(starting_vertex)
-        while len(stack) > 0:
-            current_vertex = stack.pop()
-            print(current_vertex)
-            for i in self.vertices[current_vertex]:
-                if i not in visited:
-                    visited.add(i)
-                    stack.append(i)
+        s = Stack()
+        s.push(starting_vertex)
+        visited = set()
+        while s.size() > 0:
+            v = s.pop()
+            if v not in visited:
+                print(v)
+                visited.add(v)
+                for next_vert in self.vertices[v]:
+                    s.push(next_vert)
 
     def dft_recursive(self, starting_vertex, cache=set()):
         print(starting_vertex)
