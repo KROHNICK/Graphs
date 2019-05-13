@@ -32,11 +32,15 @@ class Graph:
             print(queue.pop(0))
 
     def dft(self, starting_vertex):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        stack = [starting_vertex]
+        visited = set(starting_vertex)
+        while len(stack) > 0:
+            current_vertex = stack.pop()
+            print(current_vertex)
+            for i in self.vertices[current_vertex]:
+                if i not in visited:
+                    visited.add(i)
+                    stack.append(i)
 
     def dft_recursive(self, starting_vertex):
         """
