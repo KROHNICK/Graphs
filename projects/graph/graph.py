@@ -67,12 +67,21 @@ class Graph:
         return None
 
     def dfs(self, starting_vertex, destination_vertex):
-        """
-        Return a list containing a path from
-        starting_vertex to destination_vertex in
-        depth-first order.
-        """
-        pass  # TODO
+        s = Stack()
+        s.push([starting_vertex])
+        visited = set()
+        while s.size() > 0:
+            path = s.pop()
+            v = path[-1]
+            if v not in visited:
+                visited.add(v)
+                if v == destination_vertex:
+                    return path
+                for next_vert in self.vertices[v]:
+                    path_copy = path
+                    path_copy.append(next_vert)
+                    s.push(path_copy)
+        return []
 
 
 if __name__ == '__main__':
